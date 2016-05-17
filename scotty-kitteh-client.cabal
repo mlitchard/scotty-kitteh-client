@@ -1,0 +1,64 @@
+name:                scotty-kitteh-client
+version:             0.1.0.0
+synopsis:            Initial project template from stack
+description:         Please see README.md
+homepage:            https://github.com/mlitchard/scotty-kitteh-client#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Michael Litchard
+maintainer:          michael@schmong.org
+copyright:           2016
+category:            Haskell
+build-type:          Simple
+-- extra-source-files:
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Interface
+                     , KittehClient
+                     , Types
+                     , AddKitteh
+                     , EditKitteh
+                     , ListKitteh
+                     , RemoveKitteh
+                     , RestoreKitteh
+                     , ViewKitteh
+
+  build-depends:       base >= 4.7 && < 5
+                     , aeson
+                     , scotty
+                     , text
+                     , wai
+                     , scotty-lucid
+                     , lucid
+
+  default-language:    Haskell2010
+  default-extensions: FlexibleContexts
+                      OverloadedStrings
+                      ExtendedDefaultRules
+
+executable scotty-kitteh-client-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , scotty-kitteh-client
+  default-language:    Haskell2010
+
+test-suite scotty-kitteh-client-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , scotty-kitteh-client
+                     , hspec
+                     , hspec-wai
+                     , hspec-wai-json
+                     , aeson
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/mlitchard/scotty-kitteh-client
